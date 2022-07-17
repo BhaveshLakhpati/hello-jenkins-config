@@ -23,15 +23,13 @@ pipeline {
     	stage('Build Application') {
     		steps {
 	    		dir("hello-jenkins") {
-					steps {
-						sh 'pwd'
-						sh 'ls -l'
+					sh 'pwd'
+					sh 'ls -l'
+					
+					script {
+						sh 'mvn --version'
 						
-						script {
-							sh 'mvn --version'
-							
-							sh 'mvn -DskipTests=true clean package'	
-						}
+						sh 'mvn -DskipTests=true clean package'	
 					}
 	    		}
     		}
