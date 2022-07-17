@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  connection: local
+  tasks:
+    - name: Transfer jar 
+      copy: src=target/hello-jenkins-0.0.1-SNAPSHOT.jar dest=/var/lib/jenkins/workspace/hello-jenkins/
+    
+    - name: Run Spring Boot Application
+      command: java -jar target/hello-jenkins-0.0.1-SNAPSHOT.jar
