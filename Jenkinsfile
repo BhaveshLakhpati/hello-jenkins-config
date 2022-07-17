@@ -16,7 +16,6 @@ pipeline {
     	stage('Clone Project') {
     	    sh 'git clone https://github.com/BhaveshLakhpati/hello-jenkins.git'
     	}
-
     
     	stage('Build Application') {
 			steps {
