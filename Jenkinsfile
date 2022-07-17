@@ -37,11 +37,13 @@ pipeline {
 
     	stage('Run Spring Boot Application'){
 			steps {
-			    script {
-			    	echo "$envSelected"
-			 		
-			 		ansiblePlaybook installation: 'ansible2', inventory: 'localhost.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
-			    }
+				dir("hello-jenkins") {
+				    script {
+				    	echo "$envSelected"
+				 		
+				 		ansiblePlaybook installation: 'ansible2', inventory: 'localhost.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
+				    }				    
+				}
 			}
     	}
     }
