@@ -17,7 +17,11 @@ pipeline {
     	    steps {
     	    	sh 'rm -rf hello-jenkins'
     	    	sh 'git clone https://github.com/BhaveshLakhpati/hello-jenkins.git'
-    	    	sh 'cd hello-jenkins'
+    	    	
+    	    	dir("hello-jenkins") {
+    	    		sh 'pwd'
+    	    	}
+
     	    	sh 'ls -l'
     	    }
     	}
