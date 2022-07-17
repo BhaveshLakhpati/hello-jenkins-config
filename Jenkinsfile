@@ -17,23 +17,22 @@ pipeline {
     	    steps {
     	    	sh 'rm -rf hello-jenkins'
     	    	sh 'git clone https://github.com/BhaveshLakhpati/hello-jenkins.git'
-    	    	
-    	    	dir("hello-jenkins") {
-    	    		sh 'pwd'
-    	    	}
-
-    	    	sh 'ls -l'
     	    }
     	}
     
     	stage('Build Application') {
-			steps {
-				script {
-					sh 'mvn --version'
+    		dir("hello-jenkins") {
+				steps {
+					sh 'pwd'
+					sh 'ls -l'
 					
-					sh 'mvn -DskipTests=true clean package'	
+					script {
+						sh 'mvn --version'
+						
+						sh 'mvn -DskipTests=true clean package'	
+					}
 				}
-			}
+    		}
 		}
 
     	stage('Run Spring Boot Application'){
