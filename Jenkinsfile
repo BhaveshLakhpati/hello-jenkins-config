@@ -21,7 +21,9 @@ pipeline {
     	    steps {
     	    	sh 'rm -rf hello-jenkins'
 
-				git changelog: false, branch: 'main', credentialsId: 'git-cli', url: 'git@github.com:BhaveshLakhpati/hello-jenkins.git'
+				dir("hello-jenkins") {
+					git changelog: false, branch: 'main', credentialsId: 'git-cli', url: 'ssh://git@github.com:BhaveshLakhpati/hello-jenkins.git	'
+				}
     	    }
     	}
     
