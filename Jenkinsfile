@@ -44,13 +44,11 @@ pipeline {
 
     	stage('Run Spring Boot Application'){
 			environment {
-				ENV=params.envSelected.toLowerCase()
+				ENVIRONMENT = envSelected.toLowerCase()
 			}
 			steps {
 			    script {
-					echo "${params.envSelected}"
-
-					sh 'echo "IN LOWERCASE: ${ENV}"'
+					echo "Deploying application on : ${ENVIRONMENT}"
 
 			 		ansiblePlaybook installation: 'ansible2', inventory: '$ENV.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
 			    }
