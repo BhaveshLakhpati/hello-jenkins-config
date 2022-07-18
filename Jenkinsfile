@@ -49,7 +49,9 @@ pipeline {
 						ENV = $envSelected.toLowerCase()
 					}
 			 		
-			 		ansiblePlaybook installation: 'ansible2', inventory: '${ENV}.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
+					echo '$ENV'
+
+			 		ansiblePlaybook installation: 'ansible2', inventory: '$ENV.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
 			    }
 			}
     	}
