@@ -21,7 +21,7 @@ pipeline {
     	    steps {
     	    	sh 'rm -rf hello-jenkins'
 
-				git branch: 'main', credentialsId: 'git-cli', url: 'https://github.com/BhaveshLakhpati/hello-jenkins.git'
+				git credentialsId: 'git-cli', url: 'https://github.com/BhaveshLakhpati/hello-jenkins.git'
     	    }
     	}
     
