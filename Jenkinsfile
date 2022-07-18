@@ -50,7 +50,7 @@ pipeline {
 			    script {
 					echo "Deploying application on : ${ENVIRONMENT}"
 
-			 		ansiblePlaybook installation: 'ansible2', inventory: '$ENV.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
+			 		ansiblePlaybook installation: 'ansible2', inventory: '$ENVIRONMENT.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
 			    }
 			}
     	}
