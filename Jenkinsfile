@@ -43,12 +43,11 @@ pipeline {
 		}
 
     	stage('Run Spring Boot Application'){
+			environment {
+				ENV=params.envSelected.toLowerCase()
+			}
 			steps {
 			    script {
-			    	environment {
-						ENV=params.envSelected.toLowerCase()
-					}
-			 		
 					echo "${params.envSelected}"
 
 					sh 'echo "IN LOWERCASE: ${ENV}"'
