@@ -22,7 +22,6 @@ pipeline {
     	    	sh 'rm -rf hello-jenkins'
 
 				dir("hello-jenkins") {
-					// git@github.com:BhaveshLakhpati/hello-jenkins.git
 					git changelog: false, branch: 'main', credentialsId: 'git-cli', url: 'https://github.com/BhaveshLakhpati/hello-jenkins.git'
 				}
     	    }
@@ -46,9 +45,11 @@ pipeline {
     	stage('Run Spring Boot Application'){
 			steps {
 			    script {
-			    	echo "$envSelected"
+			    	environment {
+						ENV = $envSelected.toLowerCase()
+					}
 			 		
-			 		ansiblePlaybook installation: 'ansible2', inventory: 'localhost.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
+			 		ansiblePlaybook installation: 'ansible2', inventory: '${ENV}.inv', playbook: 'ansible.yaml', disableHostKeyChecking: true       
 			    }
 			}
     	}
