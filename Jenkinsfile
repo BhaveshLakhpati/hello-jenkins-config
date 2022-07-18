@@ -14,10 +14,12 @@ pipeline {
     
     stages {
     	stage('Clone Project') {
-    	    steps {
-    	    	sh 'rm -rf hello-jenkins'
-    	    	sh 'git clone https://github.com/BhaveshLakhpati/hello-jenkins.git'
-    	    }
+			withCredentials([usernameColonPassword(credentialsId: 'git-cli', variable: 'USERPASS')]) {
+				steps {
+					sh 'rm -rf hello-jenkins'
+					sh 'git clone https://github.com/BhaveshLakhpati/hello-jenkins.git'
+				}
+			}
     	}
     
     	stage('Build Application') {
