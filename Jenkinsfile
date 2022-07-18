@@ -3,6 +3,10 @@ pipeline {
     tools {
         maven 'maven'
     }
+
+	environment {
+		GIT_CREDENTIALS = credentials('git-cli')
+	}
     
     parameters {
         choice(
@@ -14,12 +18,11 @@ pipeline {
     
     stages {
     	stage('Clone Project') {
-			withCredentials([usernameColonPassword(credentialsId: 'git-cli', variable: 'USERPASS')]) {
-				steps {
-					sh 'rm -rf hello-jenkins'
-					sh 'git clone https://github.com/BhaveshLakhpati/hello-jenkins.git'
-				}
-			}
+    	    steps {
+    	    	sh 'rm -rf hello-jenkins'
+
+				git branch: 'main', credentialsId: 'git-cli', url: 'https://github.com/BhaveshLakhpati/hello-jenkins.git'
+    	    }
     	}
     
     	stage('Build Application') {
